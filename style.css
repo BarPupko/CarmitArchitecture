@@ -6,12 +6,12 @@
 [data-theme="dark"] {
   --bg-color: #121212;
   --text-color: white;
-  --bg-about: rgb(170, 152, 137);
+  --bg-about: rgb(188, 149, 95);
 }
 :root[data-theme="light"] {
   --bg-color: white;
   --text-color: black;
-  --bg-about: rgb(163, 153, 131);
+  --bg-about: rgb(188, 149, 95);
 }
 .about-container,
 .content-wrapper,
