@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carmit Architecture</title>
+  <meta name="description" content="Bar Popko Photography Portfolio" />
+  <meta name="keywords" content="Photography, Portfolio, Bar Popko" />
+  <link rel="icon" href="./assets/website_icon/icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+  <script type="module" src="./script.js"></script>
+
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Awesome fonts -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0/css/all.css">
+  <!-- accessability -->
+  <script src="./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/nagishli_beta.js?v=3.0" charset="utf-8"
+    defer></script>
+
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js"></script>
+
+  <!-- Firebase Firestore SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js"></script>
+
+</head>
+
+
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="./assets/website_icon/icon.png" width="55px" height="55px" alt="Logo" />
+        <p href="#" class="logo_name">BP [Photography]</p>
+
+        <!-- ❌ This is invalid (button inside button) -->
+        <!-- <button id="theme-toggle" aria-label="החלף מצב תאורה">
+                <button id="hamburger" aria-label="תפריט">&#9776;</button>
+              </button> -->
+
+        <!-- ✅ FIXED VERSION -->
+        <button id="theme-toggle" aria-label="החלף מצב תאורה">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+
+        <button id="hamburger" aria-label="תפריט">&#9776;</button>
+      </div>
+
+
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#portfolio">פורטפוליו</a></li>
+        <li><a href="#form">צור קשר</a></li>
+        <li><a href="#about">אודות</a></li>
+        <li>
+          <a href="https://www.instagram.com/barpopko" target="_blank">
+            <img src="./assets/icons/instagram.png" alt="Instagram" width="16" height="16" />
+          </a>
+        </li>
+        <li>
+          <a href="https://api.whatsapp.com/send/?phone=972526333958&text=היי+רציתי+לברר+לגבי+צילום">
+            <img src="./assets/icons/whatsapp.png" alt="Whatsapp" width="16" height="16" />
+          </a>
+        </li>
+        <li>
+
+        </li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main>
+    <div class="slider">
+      <div class="slide active"><img src="./imgaes/Landscape/FarRedBridge.jpg" alt="Slide 1"></div>
+      <div class="slide"><img src="./imgaes/Landscape/CloseRedBridge.jpg" alt="Slide 2"></div>
+      <div class="slide"><img src="./imgaes/Landscape/Soldiers (1).jpg" alt="Slide 3"></div>
+      <div class="slide"><img src="./imgaes/Landscape/Soldiers (4).jpg" alt="Slide 4"></div>
+      <div class="slide"><img src="./imgaes/Architecture/newyork_highline.jpg" alt="Slide 5"></div>
+
+      <div class="controls">
+        <button class="nav-button nav-prev">&#10094;</button>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+
+        <button class="nav-button nav-next">&#10095;</button>
+      </div>
+    </div>
+
+
+    <!-- Category buttons for filtering the gallery below -->
+    <div class="category-bubbles-section">
+      <div class="short-explain">
+        <h3> עבודות שונות במהלך שנותי כצלם</h3>
+        <p> בדוגמא ניתן למצוא דוגמאות רבות לקטגוריות שונות</p>
+      </div>
+      <button class="category-button" data-category="sunset">שקיעה</button>
+      <button class="category-button" data-category="book">בוק</button>
+      <button class="category-button" data-category="Portrait">פורטרט</button>
+      <button class="category-button" data-category="SaveTheDate">Save The Date</button>
+      <button class="category-button" data-category="animals">בעלי חיים</button>
+      <button class="category-button" data-category="landscape">נוף</button>
+      <button class="category-button" data-category="architecture">אדריכלות</button>
+      <button class="category-button" data-category="people">אנשים</button>
+      <button class="category-button active" data-category="all">הכל</button>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="category-bubbles"></div>
+    </div>
+
+    <section id="portfolio" class="gallery content-wrapper"></section>
+    <section class="software-skills scroll-reveal">
+      <h2>כישורי תוכנה</h2>
+      <div class="skills-logos">
+        <img src="assets/icons/photoshop.png" alt="Photoshop" />
+        <img src="assets/icons/photoshop-lightroom-classic.png" alt="Lightroom" />
+        <img src="assets/icons/premiere-pro.png" alt="Primer" />
+        <img src="assets/icons/DaVinci_Resolve_Studio.png" alt="DaVinchiResolve" />
+      </div>
+    </section>
+    <!-- About Section -->
+    <section class="about-me scroll-reveal" dir="rtl" id="about">
+      <div class="content-wrapper about-container">
+
+        <!-- About Content -->
+        <div class="about-image  scroll-fade">
+          <img src="./imgaes/Portrait/Bar_About.jpg" alt="Portrait of Bar Popko">
+        </div>
+
+        <div class="about-text  scroll-fade">
+          <h3>קצת עלי...</h3>
+          <p>
+            שמי פופקו בר, אני מצלם ועוסק בתחום מאז גיל 15. תמיד חלמתי לצלם ולנצור את הרגע החשוב הזה שמספר סיפור ענק
+            מאחוריו.
+          </p>
+          <p>
+            לסיום – קחו לכם חלום ותגשימו אותו.
+          </p>
+
+          <!-- Software Skills Section (part of about) -->
+
+
+          <!-- Stats -->
+          <div class="about-stats">
+            <div>
+              <h3>10+</h3>
+              <p>שנות ניסיון</p>
+            </div>
+            <div>
+              <h3>30+</h3>
+              <p>פרויקטים שונים</p>
+            </div>
+            <div>
+              <h3>76010</h3>
+              <p>קליקים</p>
+            </div>
+            <div>
+              <h3>15</h3>
+              <p>מדינות שביקרתי בהן</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <div class="form-heading scroll-reveal" id="form" dir="rtl">
+      <h2>צור קשר</h2>
+      <p>מעוניין/ת לעבוד יחד? מלא את הטופס עם פרטים על הפרויקט שלך ואחזור אליך בהקדם.</p>
+    </div>
+    <section class="contact-section  scroll-reveal" id="contact" dir="rtl">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div class="info-block">
+            <strong>דוא"ל</strong>
+            <p>barpupco@gmail.com</p>
+          </div>
+          <div class="info-block">
+            <strong>טלפון</strong>
+            <p> 52-633-3958 972+</p>
+          </div>
+          <!-- <div class="info-block">
+            <strong>כתובת</strong>
+            <p>רחוב גוש בשר מס' 12<br>חיפה, ישראל</p>
+          </div> -->
+          <div class="info-block social">
+            <strong>רשתות חברתיות</strong>
+            <div class="social-icons">
+              <a href="https://www.instagram.com/barpopko"><i class="fab fa-instagram"></i></a>
+              <a href="https://api.whatsapp.com/send/?phone=972526333958&text=היי+רציתי+לברר+לגבי+צילום"><i
+                  class="fab fa-whatsapp"></i></a>
+              <a href="https://www.linkedin.com/in/barpupko/"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- 
+        <form id="contact-form" class="contact-form">
+          <input type="text" id="fullName" placeholder="שם מלא" required />
+          <input type="email" id="email" placeholder="אימייל" required />
+          <input type="text" id="subject" placeholder="נושא" />
+          <textarea id="message" rows="5" placeholder="ההודעה שלך..."></textarea>
+          <button type="submit">שלח הודעה</button>
+        </form> -->
+
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <footer class="site-footer" dir="rtl">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>צילום</h4>
+        <p>אתר זה קיים לצורך הצגת עבודות (פורפוליו)</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>קישורים</h4>
+        <ul>
+          <li><a href="#">בית</a></li>
+          <li><a href="#portfolio">עבודות</a></li>
+          <li><a href="#form">צור קשר</a></li>
+          <li><a href="#about">אודות</a></li>
+        </ul>
+      </div>
+
+      <!-- <div class="footer-column">
+        <h4>משפטי</h4>
+        <ul>
+          <li><a href="#">מדיניות פרטיות</a></li>
+          <li><a href="#">תנאי שימוש</a></li>
+          <li><a href="#">מדיניות קבצים</a></li>
+        </ul>
+      </div> -->
+    </div>
+
+    <hr />
+    <div class="lightbox hidden" id="lightbox">
+      <span class="close">×</span>
+      <div class="lightbox-content">
+        <img alt="Expanded photo" class="lightbox-img" src="" />
+        <div class="lightbox-info">
+          <h3 id="lightbox-title"></h3>
+          <p id="lightbox-location"></p>
+          <div id="lightbox-exif"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p> כל הזכויות שמורות לפופקו בר 2025 ©</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/barpopko"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/barpupko/"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fas fa-plus"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+</body>
+
+</html>
