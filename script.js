@@ -117,11 +117,11 @@ const images = [
     objectPosition: "top",
   },
   {
-    src: "./imgaes/landscape/desert.png",
+    src: "./imgaes/landscape/urban.png",
     title: "Desert and the sea",
-    location: "Park Ha Amaqim",
+    location: "Eilat",
     exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
-    category: ["landscape", "concept"],
+    category: ["landscape", "urban"],
     objectPosition: "top",
   },
   {
