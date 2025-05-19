@@ -109,12 +109,14 @@ document.querySelectorAll(".category-button").forEach((button) => {
 // Array of image objects
 const images = [
   {
-    src: "./imgaes/SaveTheDate/img1.jpg",
-    title: "Board with numbers",
-    location: "Park Ha Amaqim12",
-    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
-    category: ["portrait", "SaveTheDate"],
+    src: "./imgaes/interior/washington.jpg",
+    title: "The Main Library",
+    location: "Washington, D.C.",
+    exactLocation: { x: 38.89243280246961, y: -77.00444342366481 },
+    category: "interior",
+    objectPosition: "top",
   },
+   
   {
     src: "./imgaes/SaveTheDate/img2.jpg",
     title: "Board with numbers",
