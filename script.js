@@ -114,7 +114,7 @@ const images = [
     date: 'תשפ"ב | סמסטר אביב 2022',
     location: "Hadar Neighborhood, Haifa",
     exactLocation: { x: 32.8151, y: 34.9984 },
-    category: "interior",
+    category: "concept",
     objectPosition: "top",
     description: `הנושא הנחקר | אוכלוסיית דרי הרחוב וצרכיהם הפיזיים, החברתיים והנפשיים.`,
     description1: `קורס יישום טכנולוגי | קפסולות שינה עבור דרי הרחוב בשכונת הדר, חיפה.`,
@@ -134,20 +134,37 @@ const images = [
     ],
   },
   {
-    src: "./imgaes/landscape/urban.png",
-    title: "Desert and the sea",
-    location: "Eilat",
-    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
-    category: ["landscape", "urban"],
+    src: "./imgaes/public/insideOut/cover.png",
+    title: "Inside-Out",
+    date: 'תשפ"ד | סמסטר אביב 2024',
+    location: "Eilat, Israel",
+    exactLocation: { x: 29.55805, y: 34.94821 },
+    category: ["public", "residential", "urban", "concept"],
     objectPosition: "top",
-  },
-  {
-    src: "./imgaes/slides/onethewater.png",
-    title: "On the water",
-    location: "Park Ha Amaqim",
-    exactLocation: { x: 32.72370464226655, y: 35.11077493651688 },
-    category: ["Graphics", "concept"],
-    objectPosition: "top",
+    description: `סטודיו מבנה מורכב | קמפוס חינוכי-חדשני-חברתי, אילת.`,
+    description1: `הנושא הנחקר | חדשנות, קהילה, מגורים, תנועה, חיפוש וגילוי.`,
+    extraParagraph: `כדי להשיג מרקם שיהווה תשתית להשגת עירוניות טובה, הפרויקט מנסה לחולל מהפך במרכז העיר אילת וללכדו ליחידה עירונית בעלת איכויות גבוהות בכל היבט. בנוסף, במיקום הייחודי של אילת המרוחקת מהמרכזים העירוניים הגדולים, קמפוס חינוכי, תרבותי וחברתי נושא עימו חשיבות רבה להתפתחות העירונית והחברתית. בנוסף, הוא יכול לספק גישה למשאבי אומנות מגוונים, סדנאות, קורסים ואירועי תרבות, המעצימים את הקהילה המקומית. כמו כן, המרכז יכול להוות פלטפורמה לפיתוח כישורים אומנותיים לחיזוק הקשרים החברתיים ולהעשרת חיי התרבות של אילת. הקמפוס תוכנן כך שמבחוץ אין אפשרות להבין מה מתרחש בפנים ולאחר החיפוש, מגלים חצר עירונית, אשר תחומה בפונקציות המגוונות שהמרכז מציע. 
+
+`,
+    credits:
+      "מנחים     אדר' גלי ליכטנוב וד''ר מרגלית | סטודיו     אדר' אורי רונן ,אדר' עמי שנער",
+    relatedImages: [
+      { src: "./imgaes/public/insideOut/cover.png", title: "הדמייה" },
+      { src: "./imgaes/public/insideOut/Shetah.png", title: "ניתוח שטח" },
+      {
+        src: "./imgaes/public/insideOut/Involvment.png",
+        title: "ניתוח אתר התערבות",
+      },
+      {
+        src: "./imgaes/public/insideOut/Plans.png",
+        title: "תוכניות וחזיתות",
+      },
+      {
+        src: "./imgaes/public/insideOut/Plans2.png",
+        title: "תוכניות וחזיתות",
+      },
+      { src: "./imgaes/public/insideOut/hatahim.png", title: "חתכים " },
+    ],
   },
 ];
 
