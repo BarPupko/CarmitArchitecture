@@ -172,7 +172,7 @@ const images = [
     title: "מפגש רחוב",
     date: 'תשפ"ד | סמסטר אביב 2023',
     location: "Jerusalem, Israel",
-    exactLocation: { x: 29.55805, y: 34.94821 },
+    exactLocation: { x: 31.7683, y: 35.2137 }, // Jerusalem coordinates
     category: ["public", "residential", "urban", "concept"],
     objectPosition: "top",
     description: `קורס מורכבות באדריכלות | החייאת שוק תלפיות בתפר סירקין-יחיאל, חיפה.`,
