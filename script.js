@@ -11,6 +11,8 @@ document.getElementById("zoom-close").addEventListener("click", () => {
 });
 
 // carousel - moving images left to right
+// Add invisible click zones to zoom-overlay
+
 
 // about me section
 
@@ -283,6 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
   zoomClose.addEventListener("click", () => {
     zoomOverlay.classList.add("hidden");
     document.body.classList.remove("no-scroll");
+    
   });
 
   zoomOverlay.addEventListener("click", (e) => {
