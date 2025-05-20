@@ -266,15 +266,22 @@
     <div class="lightbox hidden" id="lightbox">
       <span class="close">×</span>
       <div class="lightbox-content vertical">
-        <img alt="Expanded photo" class="lightbox-img resizable" src="" />
-        <div class="lightbox-info">
-          <h3 id="lightbox-title"></h3>
-          <p id="lightbox-location"></p>
-          <div id="lightbox-exif"></div>
-        </div>
+        <img class="lightbox-img" src="" alt="Expanded photo" />
+
+        <div class="lightbox-description" id="lightbox-description" dir="rtl"></div>
+
+        <div id="lightbox-map" class="lightbox-map"></div>
+
+        <div class="lightbox-gallery" id="lightbox-gallery"></div>
       </div>
     </div>
-    
+    <div id="zoom-overlay" class="zoom-overlay hidden">
+      <span class="zoom-close" id="zoom-close">×</span>
+      <img id="zoom-image" src="" alt="Zoomed image" />
+    </div>
+
+
+
 
     <div class="footer-bottom">
       <p> כל הזכויות שמורות לפופקו בר 2025 ©</p>

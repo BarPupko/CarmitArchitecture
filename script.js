@@ -109,12 +109,23 @@ document.querySelectorAll(".category-button").forEach((button) => {
 // Array of image objects
 const images = [
   {
-    src: "./imgaes/interior/washington.jpg",
+    src: "./imgaes/concept/capsules/capsuls.png",
     title: "The Main Library",
-    location: "Washington, D.C.",
-    exactLocation: { x: 38.89243280246961, y: -77.00444342366481 },
+    location: "Hadar Neighborhood, Haifa",
+    exactLocation: { x: 32.8151, y: 34.9984 },
     category: "interior",
     objectPosition: "top",
+    description:
+      "דרי הרחוב מתמודדים עם מצוקה קיומית מתמשכת, כאשר הרחוב משמש להם בית בהיעדר אפשרויות אחרות. הפרויקט שלנו מציע מענה כוללני לשיפור תנאי חייהם בשני מישורים – הפיזי והחברתי. כאדריכלים לעתיד, אנו עוסקים בשאלה \"מהו בית?\" ומבינים שעבור דרי הרחוב, הרחוב הוא חלק בלתי נפרד מזהותם. לכן לא ניתן פשוט להוציא אותם מהמרחב העירוני או לנסות להפריד בינם לבין הרחוב. לפיכך, הפרויקט מציע יצירת מרחב רחוב חדשני ומכבד, שמותאם לצרכים שלהם ומשתלב בחזות העיר.\n\nלאחר מחקר מעמיק, בחרנו להתמקד בסמטה מוזנחת בשכונת הדר בחיפה, סמוך ל\"יחידה לסיוע לדרי רחוב\" ברחוב דבורה. מיקום זה מאפשר לנו להציע פתרון שמשלב את תמיכת הקהילה עם מרחב מותאם, ובכך לקדם סביבה נגישה ותומכת.",
+    relatedImages: [
+      { src: "./imgaes/concept/capsules/capsuls.png", title: "הדמייה" },
+      { src: "./imgaes/concept/capsules/caps2.png", title: "העמדה" },
+      { src: "./imgaes/concept/capsules/caps4.png", title: " קפסולות א'" },
+      { src: "./imgaes/concept/capsules/caps5.png", title: "קפסולות ב" },
+      { src: "./imgaes/concept/capsules/caps6.png", title: "פרטי היישום" },
+      { src: "./imgaes/landscape/urban.png", title: "Mosaic Art" },
+      // ... up to 7 total
+    ],
   },
   {
     src: "./imgaes/landscape/urban.png",
@@ -162,6 +173,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Loop over each image and render it in the gallery
   gallery.innerHTML = ""; // ✅ Clear the gallery before rendering
 
+  const zoomOverlay = document.getElementById("zoom-overlay");
+  const zoomImage = document.getElementById("zoom-image");
+  const zoomClose = document.getElementById("zoom-close");
+
+  zoomClose.addEventListener("click", () => {
+    zoomOverlay.classList.add("hidden");
+  });
+
+  zoomOverlay.addEventListener("click", (e) => {
+    // Optional: click outside the image closes too
+    if (e.target === zoomOverlay) {
+      zoomOverlay.classList.add("hidden");
+    }
+  });
+
   images.forEach((img, index) => {
     const item = document.createElement("div");
     item.classList.add("gallery-item");
@@ -169,118 +195,103 @@ document.addEventListener("DOMContentLoaded", () => {
     const image = document.createElement("img");
     image.src = img.src;
     image.alt = img.title;
-    const CameraInfo = document.createElement("div");
-    CameraInfo.className = "CameraInfo";
-    CameraInfo.innerHTML =
-      '<i class="fa-solid fa-camera"></i> ' + "Click for Camera Info";
-    console.log("before the function");
-    // Apply position if defined
+    image.classList.add("gallery-image");
+
+    // Object position
+    const isPortrait = image.naturalHeight > image.naturalWidth;
+    image.classList.toggle("portrait", isPortrait);
     image.style.objectPosition = img.objectPosition || "center";
-    item.addEventListener("click", () => {
-      storedViews++;
-      localStorage.setItem(viewsKey, storedViews);
-      viewCounter.textContent = `👁️ ${storedViews}`;
 
-      lightboxImg.src = img.src;
-      document.getElementById("lightbox-title").textContent = img.title;
-      document.getElementById("lightbox-location").textContent = img.location; // you can remove this line if we only want inside the map
-
-      //deal with horizontal and vertical images
-      const isPortrait = lightboxImg.naturalHeight > lightboxImg.naturalWidth;
-      lightboxImg.classList.toggle("portrait", isPortrait);
-
-      // Extract EXIF data
-      EXIF.getData(image, function () {
-        const make = EXIF.getTag(this, "Make") || "Unknown Make";
-        const model = EXIF.getTag(this, "Model") || "Unknown Model";
-        const iso = EXIF.getTag(this, "ISOSpeedRatings") || "Unknown ISO";
-        const exposure = EXIF.getTag(this, "ExposureTime");
-        const fNumber = EXIF.getTag(this, "FNumber");
-
-        const exposureStr = exposure
-          ? `1/${Math.round(1 / exposure)}s`
-          : "Unknown Exposure";
-        const fNumberStr = fNumber ? `f/${fNumber}` : "Unknown Aperture";
-        // Extract location data
-        // Extract coordinates from exactLocation
-        const lat = img.exactLocation.x;
-        const lng = img.exactLocation.y;
-        const locationIQKey = "pk.069fe51b456f904e1abfc7ab645dd9bd";
-
-        // Static map image using LocationIQ
-        const staticMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${locationIQKey}&center=${lat},${lng}&zoom=13&size=300x150&markers=icon:small-red-cutout|${lat},${lng}`;
-
-        // Optional: clickable Google Maps link
-        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-
-        document.getElementById("lightbox-exif").innerHTML = `
-  <a href="${googleMapsUrl}" target="_blank" style="display: inline-block; margin-bottom: 10px;">
-    <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
-  </a>
-  <p><strong>Camera:</strong> ${make} ${model}</p>
-  <p><strong>ISO:</strong> ${iso}</p>
-  <p><strong>Aperture:</strong> ${fNumberStr}</p>
-  <p><strong>Shutter Speed:</strong> ${exposureStr}</p>
-`;
-      });
-
-      lightbox.classList.remove("hidden");
-    });
-    console.log("after the function");
-
-    const caption = document.createElement("div");
-    caption.className = "caption";
-    caption.textContent = img.title;
-
-    const pin = document.createElement("div");
-    pin.className = "pin";
-    pin.innerHTML = '<i class="fa-solid fa-location-dot"></i> ' + img.location;
-
-    const viewsKey = imageKeys[index];
+    // View counter
+    const viewsKey = `img_${index}`;
     let storedViews = parseInt(localStorage.getItem(viewsKey)) || 0;
-
     const viewCounter = document.createElement("div");
     viewCounter.className = "views";
     viewCounter.textContent = `👁️ ${storedViews}`;
 
-    //portrait and landscape images
-    const isPortrait = img.naturalHeight > img.naturalWidth;
-    image.classList.toggle("portrait", isPortrait);
-
-    // Append all elements to the image block
-    item.appendChild(image);
-    item.appendChild(caption);
-    item.appendChild(pin);
-    item.appendChild(viewCounter);
-    item.appendChild(CameraInfo);
-
-    // When image is clicked
+    // Image click logic
     item.addEventListener("click", () => {
-      // Increase view count and store it
+      storedViews++;
       localStorage.setItem(viewsKey, storedViews);
       viewCounter.textContent = `👁️ ${storedViews}`;
-
-      // Show image in lightbox
-      lightboxImg.src = img.src;
       lightbox.classList.remove("hidden");
+      lightboxImg.src = img.src;
+
+      // Description
+      document.getElementById("lightbox-description").textContent =
+        img.description || "";
+
+      // Map
+      const lat = img.exactLocation.x;
+      const lng = img.exactLocation.y;
+      const staticMapUrl = `https://maps.locationiq.com/v3/staticmap?key=pk.069fe51b456f904e1abfc7ab645dd9bd&center=${lat},${lng}&zoom=13&size=300x150&markers=icon:small-red-cutout|${lat},${lng}`;
+      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+      document.getElementById("lightbox-map").innerHTML = `
+        <a href="${googleMapsUrl}" target="_blank" style="display: inline-block; margin-bottom: 10px;">
+          <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
+        </a>
+      `;
+
+      // Related images
+      const galleryDiv = document.getElementById("lightbox-gallery");
+      galleryDiv.innerHTML = "";
+      (img.relatedImages || []).slice(0, 7).forEach((related) => {
+        const thumbWrapper = document.createElement("div");
+
+        const thumb = document.createElement("img");
+        thumb.src = related.src;
+        thumb.alt = related.title;
+        const zoomOverlay = document.getElementById("zoom-overlay");
+        const zoomImage = document.getElementById("zoom-image");
+
+        let zoomTimeout;
+
+        thumb.addEventListener("click", () => {
+          zoomImage.src = thumb.src;
+          zoomOverlay.classList.remove("hidden");
+        });
+
+        zoomOverlay.addEventListener("mouseleave", () => {
+          zoomTimeout = setTimeout(() => {
+            zoomOverlay.classList.add("hidden");
+          }, 10); // delay slightly
+        });
+
+        const title = document.createElement("div");
+        title.className = "thumb-title";
+        title.textContent = related.title;
+
+        thumbWrapper.appendChild(thumb);
+        thumbWrapper.appendChild(title);
+        galleryDiv.appendChild(thumbWrapper);
+      });
     });
 
-    // Add the item to the gallery
+    // Optional: caption
+    const caption = document.createElement("div");
+    caption.className = "caption";
+    caption.textContent = img.title;
+
+    item.appendChild(image);
+    item.appendChild(caption);
+    item.appendChild(viewCounter);
     gallery.appendChild(item);
-  });
 
-  // Close lightbox by clicking the "X"
-  closeBtn.addEventListener("click", () => {
-    lightbox.classList.add("hidden");
-  });
-
-  // Close lightbox by clicking the background (but not the image itself)
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
+    // Close with X button
+    const closeBtn = document.querySelector(".close");
+    closeBtn.addEventListener("click", () => {
       lightbox.classList.add("hidden");
-    }
+    });
+
+    // Close by clicking outside content
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.add("hidden");
+      }
+    });
   });
 });
+// Close lightbox
 
 // Category filtering
 document.addEventListener("DOMContentLoaded", () => {
