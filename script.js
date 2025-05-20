@@ -110,21 +110,27 @@ document.querySelectorAll(".category-button").forEach((button) => {
 const images = [
   {
     src: "./imgaes/concept/capsules/capsuls.png",
-    title: "The Main Library",
+    title: "ReStreet | קפסולות לדרי רחוב",
+    date: 'תשפ"ב | סמסטר אביב 2022',
     location: "Hadar Neighborhood, Haifa",
     exactLocation: { x: 32.8151, y: 34.9984 },
     category: "interior",
     objectPosition: "top",
-    description:
-      "דרי הרחוב מתמודדים עם מצוקה קיומית מתמשכת, כאשר הרחוב משמש להם בית בהיעדר אפשרויות אחרות. הפרויקט שלנו מציע מענה כוללני לשיפור תנאי חייהם בשני מישורים – הפיזי והחברתי. כאדריכלים לעתיד, אנו עוסקים בשאלה \"מהו בית?\" ומבינים שעבור דרי הרחוב, הרחוב הוא חלק בלתי נפרד מזהותם. לכן לא ניתן פשוט להוציא אותם מהמרחב העירוני או לנסות להפריד בינם לבין הרחוב. לפיכך, הפרויקט מציע יצירת מרחב רחוב חדשני ומכבד, שמותאם לצרכים שלהם ומשתלב בחזות העיר.\n\nלאחר מחקר מעמיק, בחרנו להתמקד בסמטה מוזנחת בשכונת הדר בחיפה, סמוך ל\"יחידה לסיוע לדרי רחוב\" ברחוב דבורה. מיקום זה מאפשר לנו להציע פתרון שמשלב את תמיכת הקהילה עם מרחב מותאם, ובכך לקדם סביבה נגישה ותומכת.",
+    description: `הנושא הנחקר | אוכלוסיית דרי הרחוב וצרכיהם הפיזיים, החברתיים והנפשיים.`,
+    description1: `קורס יישום טכנולוגי | קפסולות שינה עבור דרי הרחוב בשכונת הדר, חיפה.`,
+    extraParagraph: `דרי הרחוב מתמודדים עם מצוקה קיומית מתמשכת, כאשר הרחוב משמש להם בית בהיעדר אפשרויות אחרות. הפרויקט שלנו מציע מענה כוללני לשיפור תנאי חייהם בשני מישורים – הפיזי והחברתי. כאדריכלים לעתיד, אנו עוסקים בשאלה "מהו בית?" ומבינים שעבור דרי הרחוב, הרחוב הוא חלק בלתי נפרד מזהותם. לכן לא ניתן פשוט להוציא אותם מהמרחב העירוני או לנסות להפריד בינם לבין הרחוב. לפיכך, הפרויקט מציע יצירת מרחב רחוב חדשני ומכבד, שמותאם לצרכים שלהם ומשתלב בחזות העיר.
+
+לאחר מחקר מעמיק, בחרנו להתמקד בסמטה מוזנחת בשכונת הדר בחיפה, סמוך ל"יחידה לסיוע לדרי רחוב" ברחוב דבורה. מיקום זה מאפשר לנו להציע פתרון שמשלב את תמיכת הקהילה עם מרחב מותאם, ובכך לקדם סביבה נגישה ותומכת.
+
+`,
+    credits: "מנחים     אדר' אליעזר הירש | סטודיו     אדר' שגית וקנין בלפרמן",
     relatedImages: [
       { src: "./imgaes/concept/capsules/capsuls.png", title: "הדמייה" },
       { src: "./imgaes/concept/capsules/caps2.png", title: "העמדה" },
       { src: "./imgaes/concept/capsules/caps4.png", title: " קפסולות א'" },
       { src: "./imgaes/concept/capsules/caps5.png", title: "קפסולות ב" },
       { src: "./imgaes/concept/capsules/caps6.png", title: "פרטי היישום" },
-      { src: "./imgaes/landscape/urban.png", title: "Mosaic Art" },
-      // ... up to 7 total
+      { src: "./imgaes/concept/capsules/caps3.png", title: "הדמייה" },
     ],
   },
   {
@@ -220,6 +226,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Description
       document.getElementById("lightbox-description").textContent =
         img.description || "";
+      document.getElementById("lightbox-description1").textContent =
+        img.description1 || "";
 
       // Map
       const lat = img.exactLocation.x;
@@ -231,6 +239,16 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
         </a>
       `;
+      document.getElementById("lightbox-title").textContent = img.title || "";
+      document.getElementById("lightbox-date").textContent = img.date || "";
+      document.getElementById("lightbox-description").textContent =
+        img.description || "";
+      document.getElementById("lightbox-description1").textContent =
+        img.description1 || "";
+      document.getElementById("lightbox-extra").textContent =
+        img.extraParagraph || "";
+      document.getElementById("lightbox-credits").textContent =
+        img.credits || "";
 
       // Related images
       const galleryDiv = document.getElementById("lightbox-gallery");
