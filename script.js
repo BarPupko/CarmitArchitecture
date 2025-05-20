@@ -1,6 +1,7 @@
 // firebase
 
 // navbar change on scroll
+// carousel - moving images left to right
 
 // about me section
 
@@ -229,12 +230,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Loop over each image and render it in the gallery
   gallery.innerHTML = ""; // ✅ Clear the gallery before rendering
 
+  let currentZoomImages = [];
+  let currentZoomIndex = 0;
+
   const zoomOverlay = document.getElementById("zoom-overlay");
   const zoomImage = document.getElementById("zoom-image");
   const zoomClose = document.getElementById("zoom-close");
-
+  const zoomPrev = document.getElementById("zoom-prev");
+  const zoomNext = document.getElementById("zoom-next");
   zoomClose.addEventListener("click", () => {
     zoomOverlay.classList.add("hidden");
+    document.body.classList.remove("no-scroll");
   });
 
   zoomOverlay.addEventListener("click", (e) => {
@@ -315,20 +321,50 @@ document.addEventListener("DOMContentLoaded", () => {
         const thumb = document.createElement("img");
         thumb.src = related.src;
         thumb.alt = related.title;
-        const zoomOverlay = document.getElementById("zoom-overlay");
-        const zoomImage = document.getElementById("zoom-image");
 
         let zoomTimeout;
 
         thumb.addEventListener("click", () => {
-          zoomImage.src = thumb.src;
-          zoomOverlay.classList.remove("hidden");
-        });
+          // Find index of clicked image in relatedImages
+          currentZoomImages = img.relatedImages;
+          currentZoomIndex = index; // or set it based on thumb.src match
 
-        zoomOverlay.addEventListener("mouseleave", () => {
-          zoomTimeout = setTimeout(() => {
+          // Set first image
+          document.getElementById("zoom-image").src =
+            currentZoomImages[currentZoomIndex].src;
+          zoomOverlay.classList.remove("hidden");
+          document.body.classList.add("no-scroll");
+
+          document.getElementById("zoom-prev").addEventListener("click", () => {
+            currentZoomIndex =
+              (currentZoomIndex - 1 + currentZoomImages.length) %
+              currentZoomImages.length;
+            document.getElementById("zoom-image").src =
+              currentZoomImages[currentZoomIndex].src;
+          });
+
+          document.getElementById("zoom-next").addEventListener("click", () => {
+            currentZoomIndex =
+              (currentZoomIndex + 1) % currentZoomImages.length;
+            document.getElementById("zoom-image").src =
+              currentZoomImages[currentZoomIndex].src;
+          });
+
+          zoomClose.addEventListener("click", () => {
             zoomOverlay.classList.add("hidden");
-          }, 10); // delay slightly
+            document.body.classList.remove("no-scroll");
+          });
+
+          currentZoomImages = img.relatedImages;
+          currentZoomIndex = currentZoomImages.findIndex(
+            (related) => related.src === thumb.src
+          );
+          if (currentZoomIndex === -1) currentZoomIndex = 0;
+
+          updateZoomImage();
+
+          zoomOverlay.classList.remove("hidden");
+          document.body.classList.add("no-scroll");
         });
 
         const title = document.createElement("div");
@@ -355,6 +391,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.querySelector(".close");
     closeBtn.addEventListener("click", () => {
       lightbox.classList.add("hidden");
+    });
+    zoomPrev.addEventListener("click", () => {
+      currentZoomIndex =
+        (currentZoomIndex - 1 + currentZoomImages.length) %
+        currentZoomImages.length;
+      updateZoomImage();
+    });
+
+    zoomNext.addEventListener("click", () => {
+      currentZoomIndex = (currentZoomIndex + 1) % currentZoomImages.length;
+      updateZoomImage();
+    });
+
+    zoomClose.addEventListener("click", () => {
+      zoomOverlay.classList.add("hidden");
+      document.body.classList.remove("no-scroll");
     });
 
     // Close by clicking outside content
@@ -483,7 +535,9 @@ if (!isPortrait) {
 }
 
 //// progress bar
-
+function updateZoomImage() {
+  zoomImage.src = currentZoomImages[currentZoomIndex].src;
+}
 // accessability
 nl_pos = "tr";
 nl_color = "yellow";

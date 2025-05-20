@@ -402,18 +402,70 @@ body {
   transition: all 0.3s ease;
   pointer-events: none; /* Prevent hover flickering */
 }
+
+.zoom-image-strip {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+  max-width: 100vw;
+  max-height: 80vh;
+  align-items: center;
+}
 .zoom-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10001;
-  backdrop-filter: blur(4px);
+  flex-direction: column;
+}
+
+.zoom-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 80vh;
+  gap: 1rem;
+  position: relative;
+}
+
+#zoom-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.zoom-nav {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  padding: 0 1rem;
+  z-index: 2;
+  user-select: none;
+}
+
+.zoom-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 10002;
+  font-weight: bold;
 }
 
 .zoom-overlay.hidden {
@@ -424,7 +476,6 @@ body {
   max-width: 50vw;
   max-height: 80vh;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .zoom-close {
@@ -1289,7 +1340,7 @@ footer hr {
   @media (max-width: 768px) {
     /* Lightbox slightly inset from screen edges */
     .lightbox-content.vertical {
-      width: 90vw;
+      width: 80vw;
       max-height: 90vh;
       padding: 1rem;
       border-radius: 10px;
@@ -1349,12 +1400,12 @@ footer hr {
 
     /* Close button always accessible */
     .close {
-      font-size: 1.5rem;
+      font-size: 2.5rem;
       top: 10px;
       right: 15px;
       z-index: 10002;
       position: absolute;
-      color: white;
+      color: rgb(255, 179, 0);
     }
 
     /* Zoom overlay image size for mobile */
