@@ -12,7 +12,27 @@ document.getElementById("zoom-close").addEventListener("click", () => {
 
 // carousel - moving images left to right
 // Add invisible click zones to zoom-overlay
+const leftZone = document.createElement("div");
+leftZone.className = "zoom-click-left";
 
+const rightZone = document.createElement("div");
+rightZone.className = "zoom-click-right";
+
+document.querySelector(".zoom-carousel-wrapper").appendChild(leftZone);
+document.querySelector(".zoom-carousel-wrapper").appendChild(rightZone);
+
+// Event handlers
+leftZone.addEventListener("click", () => {
+  currentZoomIndex =
+    (currentZoomIndex - 1 + currentZoomImages.length) %
+    currentZoomImages.length;
+  updateZoomImage();
+});
+
+rightZone.addEventListener("click", () => {
+  currentZoomIndex = (currentZoomIndex + 1) % currentZoomImages.length;
+  updateZoomImage();
+});
 
 // about me section
 
@@ -285,7 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
   zoomClose.addEventListener("click", () => {
     zoomOverlay.classList.add("hidden");
     document.body.classList.remove("no-scroll");
-    
   });
 
   zoomOverlay.addEventListener("click", (e) => {
@@ -377,6 +396,16 @@ document.addEventListener("DOMContentLoaded", () => {
           // currentZoomIndex = currentZoomImages.findIndex(
           //   (related) => related.src === thumb.src
           //);
+
+            // Add a short wait time before showing the overlay for smoother UX
+            setTimeout(() => {
+            // Set first image
+            document.getElementById("zoom-image").src =
+              currentZoomImages[currentZoomIndex].src;
+            // Show the overlay
+            zoomOverlay.classList.remove("hidden");
+            document.body.classList.add("no-scroll");
+            }, 200); // 200ms delay
 
           const thumbSrc = thumb.getAttribute("src").split("/imgaes").pop(); // just the path after /imgaes
 
