@@ -1,6 +1,17 @@
 // firebase
 
 // navbar change on scroll
+// close button
+document.querySelector(".close").classList.add("hidden");
+document.getElementById("zoom-overlay").classList.remove("hidden");
+document.body.classList.add("no-scroll");
+
+document.getElementById("zoom-close").addEventListener("click", () => {
+  document.getElementById("zoom-overlay").classList.add("hidden");
+  document.body.classList.remove("no-scroll");
+  document.querySelector(".close").classList.remove("hidden");
+});
+
 // carousel - moving images left to right
 
 // about me section
