@@ -336,14 +336,24 @@ document.addEventListener("DOMContentLoaded", () => {
         thumb.addEventListener("click", () => {
           // Find index of clicked image in relatedImages
           currentZoomImages = img.relatedImages;
-          currentZoomIndex = currentZoomImages.findIndex(
-            (related) => related.src === thumb.src
+
+          // Set the correct index based on what was clicked
+          // currentZoomIndex = currentZoomImages.findIndex(
+          //   (related) => related.src === thumb.src
+          //);
+
+          const thumbSrc = thumb.getAttribute("src").split("/imgaes").pop(); // just the path after /imgaes
+
+          currentZoomIndex = currentZoomImages.findIndex((related) =>
+            related.src.includes(thumbSrc)
           );
+
           if (currentZoomIndex === -1) currentZoomIndex = 0;
 
           // Set first image
           document.getElementById("zoom-image").src =
             currentZoomImages[currentZoomIndex].src;
+          // Show the overlay
           zoomOverlay.classList.remove("hidden");
           document.body.classList.add("no-scroll");
 
@@ -367,16 +377,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.remove("no-scroll");
           });
 
-          currentZoomImages = img.relatedImages;
-          currentZoomIndex = currentZoomImages.findIndex(
-            (related) => related.src === thumb.src
-          );
-          if (currentZoomIndex === -1) currentZoomIndex = 0;
-
+          // Update image view to start with the clicked image
           updateZoomImage();
-
-          zoomOverlay.classList.remove("hidden");
-          document.body.classList.add("no-scroll");
         });
 
         const title = document.createElement("div");
