@@ -221,6 +221,11 @@ body {
   border-radius: 5px;
   font-size: 0.9rem;
 }
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .lightbox {
   position: fixed;
   top: 50%;
@@ -254,7 +259,7 @@ body {
 
   /* Adjust width for better visibility */
   width: 50%;
-  max-width: 800px; 
+  max-width: 800px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -283,7 +288,7 @@ body {
 }
 
 .lightbox-img {
-  max-width: 50%;
+  max-width: 90%;
   height: auto;
   object-fit: contain;
   border-radius: 10px;
@@ -1150,6 +1155,7 @@ footer hr {
     height: 120px; /* 👈 Smaller fixed height */
     border-radius: 8px;
     margin-bottom: 0.5rem;
+    display: hidden;
   }
 
   .no-scroll {
@@ -1187,6 +1193,10 @@ footer hr {
     overflow-y: auto;
     direction: rtl;
     text-align: right;
+  }
+  .no-scroll {
+    overflow: hidden;
+    height: 100vh;
   }
 
   .nav-links li a {
@@ -1250,14 +1260,6 @@ footer hr {
     display: none;
   }
 
-  .CameraInfo {
-    margin-top: 4px; /* Tighter spacing on mobile */
-    font-size: 0.5rem; /* Slightly smaller */
-    bottom: 240px;
-    left: 10px;
-    display: none;
-  }
-
   .category-bubbles {
     display: flex;
     flex-wrap: wrap; /* Allows wrapping on smaller screens */
@@ -1284,26 +1286,88 @@ footer hr {
     height: 240px;
     max-width: 100%;
   }
-  .lightbox-content {
-    max-width: 90%;
-    max-height: 80%;
-    overflow: auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-  }
+  @media (max-width: 768px) {
+    /* Lightbox slightly inset from screen edges */
+    .lightbox-content.vertical {
+      width: 90vw;
+      max-height: 90vh;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
 
-  .lightbox-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 1rem;
-  }
+    /* Text adjustments */
+    .lightbox-title {
+      font-size: 1.2rem;
+    }
 
-  .lightbox-info {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-    color: #fff;
+    .lightbox-img {
+      max-width: 90%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .lightbox-date {
+      font-size: 0.9rem;
+    }
+
+    .lightbox-description,
+    .lightbox-description1 {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .lightbox-extra {
+      font-size: 0.9rem;
+      max-width: 100%;
+      margin-inline: auto;
+    }
+
+    .lightbox-credits {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+
+    /* Gallery grid */
+    .lightbox-gallery {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    .lightbox-gallery img {
+      max-width: 100%;
+    }
+
+    /* ✅ Hide map entirely */
+    .lightbox-map,
+    .lightbox-map-wrapper,
+    #lightbox-map {
+      display: none !important;
+    }
+
+    /* Close button always accessible */
+    .close {
+      font-size: 1.5rem;
+      top: 10px;
+      right: 15px;
+      z-index: 10002;
+      position: absolute;
+      color: white;
+    }
+
+    /* Zoom overlay image size for mobile */
+    #zoom-image {
+      max-width: 90vw;
+      max-height: 60vh;
+    }
+
+    .zoom-close {
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+    }
   }
 
   .pin {

@@ -139,7 +139,7 @@ const images = [
     date: 'תשפ"ד | סמסטר אביב 2024',
     location: "Eilat, Israel",
     exactLocation: { x: 29.55805, y: 34.94821 },
-    category: ["public", "residential", "urban", "concept"],
+    category: ["public", "urban", "concept"],
     objectPosition: "top",
     description: `סטודיו מבנה מורכב | קמפוס חינוכי-חדשני-חברתי, אילת.`,
     description1: `הנושא הנחקר | חדשנות, קהילה, מגורים, תנועה, חיפוש וגילוי.`,
@@ -164,6 +164,39 @@ const images = [
         title: "תוכניות וחזיתות",
       },
       { src: "./imgaes/public/insideOut/hatahim.png", title: "חתכים " },
+    ],
+  },
+  {
+    src: "./imgaes/Slides/bluerails.png",
+    title: "מפגש רחוב",
+    date: 'תשפ"ד | סמסטר אביב 2023',
+    location: "Jerusalem, Israel",
+    exactLocation: { x: 29.55805, y: 34.94821 },
+    category: ["public", "residential", "urban", "concept"],
+    objectPosition: "top",
+    description: `קורס מורכבות באדריכלות | החייאת שוק תלפיות בתפר סירקין-יחיאל, חיפה.`,
+    description1: `הנושא הנחקר | טיפולוגיות בנייה ומה שביניהם, החתך העירוני והחלל העירוני.`,
+    extraParagraph: `הפרויקט עוסק בעיצוב עירוני מחדש בחלל נתון, בשוק תלפיות בעיר חיפה. אזור ההתערבות נמצא בחלקו ההיסטורי והצפוני של רובע הדר וההתמקדות היא בתפר סירקין-יחיאל. תפר זה הוא אחת הנקודות הרבות בהן נוצר מפגש בין המבנים המזוהים עם הסגנון הבינלאומי למבנים המזוהים עם הבנייה הערבית. הקווים המנחים הם לייצר חיבור בין שתי הטיפולוגיות השונות, המוזכרות לעיל, לחקור את החתך העירוני שנוצר ולהתמקד בעיקר בחלל העירוני שנוצר ביניהם. בנוסף, נעשה טיפול בחזיתות ובחיבור בין שכבות המבנה. המטרה המרכזית היא לייצר צריכה מוגברת של המרחב ולהנגישו לציבור הרחב.
+
+`,
+    credits: "מנחה     אדר' בלו פיינרו | תכנון משותף עם שיר קפלן",
+    relatedImages: [
+      { src: "./imgaes/public/MifgashRehov/Hadmaya.png", title: "הדמייה" },
+      { src: "./imgaes/public/MifgashRehov/Nituah.png", title: "ניתוח שטח" },
+      { src: "./imgaes/public/MifgashRehov/Nituah2.png", title: "ניתוח שטח" },
+      {
+        src: "./imgaes/public/MifgashRehov/MainObjectives.png",
+        title: "נקודות נבחרות",
+      },
+      {
+        src: "./imgaes/public/MifgashRehov/MainObjectives2.png",
+        title: "נקודות נבחרות",
+      },
+      {
+        src: "./imgaes/public/MifgashRehov/MainObjectives3.png",
+        title: "נקודות נבחרות",
+      },
+      { src: "./imgaes/Slides/bluerails.png", title: "הדמייה" },
     ],
   },
 ];
@@ -238,6 +271,12 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(viewsKey, storedViews);
       viewCounter.textContent = `👁️ ${storedViews}`;
       lightbox.classList.remove("hidden");
+      document.body.classList.add("no-scroll");
+
+      closeBtn.addEventListener("click", () => {
+        lightbox.classList.add("hidden");
+        document.body.classList.remove("no-scroll");
+      });
       lightboxImg.src = img.src;
 
       // Description
@@ -327,6 +366,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // Close lightbox
+document.querySelector(".close").addEventListener("click", () => {
+  document.getElementById("lightbox").classList.add("hidden");
+  document.body.classList.remove("no-scroll");
+});
+
+document.getElementById("lightbox").addEventListener("click", (e) => {
+  if (e.target.id === "lightbox") {
+    document.getElementById("lightbox").classList.add("hidden");
+    document.body.classList.remove("no-scroll");
+  }
+});
 
 // Category filtering
 document.addEventListener("DOMContentLoaded", () => {
