@@ -336,7 +336,10 @@ document.addEventListener("DOMContentLoaded", () => {
         thumb.addEventListener("click", () => {
           // Find index of clicked image in relatedImages
           currentZoomImages = img.relatedImages;
-          currentZoomIndex = index; // or set it based on thumb.src match
+          currentZoomIndex = currentZoomImages.findIndex(
+            (related) => related.src === thumb.src
+          );
+          if (currentZoomIndex === -1) currentZoomIndex = 0;
 
           // Set first image
           document.getElementById("zoom-image").src =
