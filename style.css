@@ -151,12 +151,6 @@ body {
   align-items: center;
   gap: 1rem;
 }
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 1rem;
-  padding: 2rem;
-}
 
 .gallery {
   display: grid;
@@ -1227,11 +1221,16 @@ footer hr {
     width: 100%;
     aspect-ratio: 4/3; /* Bigger frame ratio for larger images */
     min-height: 180px; /* Ensure a larger minimum height */
-    max-width: 180px;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
     border-radius: 12px;
     background-color: #f0f0f0; /* nice background if images have transparent areas */
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .lightbox-map {
@@ -1328,16 +1327,20 @@ footer hr {
   }
 
   .gallery {
-    grid-template-columns: repeat(3, 1fr); /* 1 column on phones */
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 1rem;
+    padding: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    box-sizing: border-box;
   }
 
   .caption {
-    font-size: 0.5rem;
-    left: 100px;
+    font-size: 1.5rem;
+    left: 250px;
     bottom: 10px;
-    display: none;
   }
 
   .views {
