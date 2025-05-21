@@ -51,6 +51,16 @@ document.querySelectorAll(".scroll-reveal").forEach((el) => {
 // scroll
 
 window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("project-selector");
+
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
+
+window.addEventListener("scroll", function () {
   const navbar = document.querySelector(".navbar");
 
   if (window.scrollY > 50) {
@@ -176,8 +186,8 @@ const images = [
 `,
     credits: "מנחה סטודיו:     ד''ר גלי ליכטנוב  ",
     credits1: "מנחה סטודיו:     ד''ר דנה מרגלית  ",
-    credits2: "מנחה בסטודיו:  אדר' עמי שנער",
-    credits3: "מנחה בסטודיו: אדר' אורי רונן",
+    credits2: "מנחה סטודיו:  אדר' עמי שנער",
+    credits3: " מנחה סטודיו: אדר' אורי רונן",
     relatedImages: [
       { src: "./imgaes/public/insideOut/cover.png", title: "הדמייה" },
       { src: "./imgaes/public/insideOut/Shetah.png", title: "ניתוח שטח" },

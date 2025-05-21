@@ -1115,13 +1115,13 @@ footer hr {
 
 /* Change background, text, and border color when scrolled past 20px */
 #project-selector.scrolled {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--bg-color);
   color: var(--text-color);
   border: 1px solid #4e4e4e;
 }
 #project-selector {
   direction: rtl;
-  background-color: var(--bg-color);
+  background-color: rgba(255, 255, 255, 0.484);
   border: 1px solid rgba(0, 0, 0, 0.85);
   color: var(--text-color);
   font-size: 1rem;
