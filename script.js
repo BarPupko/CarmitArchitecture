@@ -2,13 +2,6 @@
 
 // navbar change on scroll
 // close button
-document.querySelector(".close").classList.add("hidden");
-document.getElementById("zoom-overlay").classList.remove("hidden");
-
-document.getElementById("zoom-close").addEventListener("click", () => {
-  document.getElementById("zoom-overlay").classList.add("hidden");
-  document.querySelector(".close").classList.remove("hidden");
-});
 
 // carousel - moving images left to right
 // Add invisible click zones to zoom-overlay
@@ -388,26 +381,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let zoomTimeout;
 
-        thumb.addEventListener("click", () => {
-          // Find index of clicked image in relatedImages
+        thumb.addEventListener("click", (event) => {
+          const lightboxIsOpen = !document
+            .getElementById("lightbox")
+            .classList.contains("hidden");
+          if (!lightboxIsOpen) return;
+
           currentZoomImages = img.relatedImages;
 
-          // Set the correct index based on what was clicked
-          // currentZoomIndex = currentZoomImages.findIndex(
-          //   (related) => related.src === thumb.src
-          //);
+          const thumbSrc = thumb.getAttribute("src").split("/imgaes").pop();
 
-            // Add a short wait time before showing the overlay for smoother UX
-            setTimeout(() => {
-            // Set first image
+          currentZoomIndex = currentZoomImages.findIndex((related) =>
+            related.src.includes(thumbSrc)
+          );
+
+          if (currentZoomIndex === -1) currentZoomIndex = 0;
+
+          setTimeout(() => {
             document.getElementById("zoom-image").src =
               currentZoomImages[currentZoomIndex].src;
-            // Show the overlay
             zoomOverlay.classList.remove("hidden");
             document.body.classList.add("no-scroll");
-            }, 200); // 200ms delay
-
-          const thumbSrc = thumb.getAttribute("src").split("/imgaes").pop(); // just the path after /imgaes
+          }, 200);
 
           currentZoomIndex = currentZoomImages.findIndex((related) =>
             related.src.includes(thumbSrc)
