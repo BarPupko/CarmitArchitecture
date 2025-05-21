@@ -194,11 +194,13 @@ body {
 .caption {
   position: absolute;
   bottom: 10px;
-  left: 220px;
+  left: 720px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 0.3rem 0.6rem;
   border-radius: 5px;
+  direction: rtl;
+
   font-size: 0.9rem;
 }
 
@@ -730,7 +732,7 @@ body {
   max-width: 1200px;
   margin: auto;
   gap: 2rem;
-  flex-direction: row-reverse; /* 👈 flips the order */
+  flex-direction: row; /* 👈 image left, text right */
 }
 
 .about-image {
@@ -739,7 +741,7 @@ body {
 }
 
 .about-image img {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   border-radius: 8px;
 }
