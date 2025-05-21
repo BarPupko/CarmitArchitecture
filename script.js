@@ -225,36 +225,39 @@ const images = [
     ],
   },
   {
-    src: "./imgaes/Slides/bluerails.png",
-    title: "מפגש רחוב",
-    date: 'תשפ"ד | סמסטר אביב 2023',
+    src: "./imgaes/residential/LVLUP/cover2.png",
+    title: "LEVEL UP",
+    date: 'תשפ"ד | סמסטר חורף 2024',
     location: "Jerusalem, Israel",
     exactLocation: { x: 31.7683, y: 35.2137 }, // Jerusalem coordinates
     category: ["public", "residential", "urban", "concept"],
     objectPosition: "top",
-    description: `קורס מורכבות באדריכלות | החייאת שוק תלפיות בתפר סירקין-יחיאל, חיפה.`,
-    description1: `הנושא הנחקר | טיפולוגיות בנייה ומה שביניהם, החתך העירוני והחלל העירוני.`,
-    extraParagraph: `הפרויקט עוסק בעיצוב עירוני מחדש בחלל נתון, בשוק תלפיות בעיר חיפה. אזור ההתערבות נמצא בחלקו ההיסטורי והצפוני של רובע הדר וההתמקדות היא בתפר סירקין-יחיאל. תפר זה הוא אחת הנקודות הרבות בהן נוצר מפגש בין המבנים המזוהים עם הסגנון הבינלאומי למבנים המזוהים עם הבנייה הערבית. הקווים המנחים הם לייצר חיבור בין שתי הטיפולוגיות השונות, המוזכרות לעיל, לחקור את החתך העירוני שנוצר ולהתמקד בעיקר בחלל העירוני שנוצר ביניהם. בנוסף, נעשה טיפול בחזיתות ובחיבור בין שכבות המבנה. המטרה המרכזית היא לייצר צריכה מוגברת של המרחב ולהנגישו לציבור הרחב.
+    description: `סטודיו מחקרי במגזר החרדי | התחדשות עירונית בשכונת שמואל הנביא, ירושלים. `,
+    description1: `הנושא הנחקר | מבנים רב תכליתיים לחברה החרדית על מגוון צרכיה והעדפותיה.`,
+    extraParagraph: `המגזר החרדי בישראל נתון בשנים האחרונות בהתפתחות והתרחבות בכמה מישורים: הדמוגרפי, הציבורי, הפוליטי והתרבותי. הפרויקט עוסק בניסיון לתת מענה לאתגרים בדיור לציבור החרדי באמצעות עירוב שימושים ורב תכליתיות, הכוללים הגדרה גמישה של שימושים בתוכניות וצמצום השימוש במשאבי הקרקע. בנוסף, הפרויקט מייצר היררכיה בצירים ובמעברים וגם כיכרות עירוניות, שישמשו כמקום מפגש עבור האוכלוסייה. כמו כן, הפרויקט מתמקד בקונספט "משרת-משורת" והוא חוקר את היחסים ביניהם ואת תפקידם. קיים ניסיון להבין את המשחקיות של סטרוקטורה גרידית ומילואה במגוון דירות, המהוות "פלאג-אין".
 
 `,
-    credits: "מנחה     אדר' בלו פיינרו | תכנון משותף עם שיר קפלן",
+    credits: "מנחה     ד''ר הדס שדר",
     relatedImages: [
-      { src: "./imgaes/public/MifgashRehov/Hadmaya.png", title: "הדמייה" },
-      { src: "./imgaes/public/MifgashRehov/Nituah.png", title: "ניתוח שטח" },
-      { src: "./imgaes/public/MifgashRehov/Nituah2.png", title: "ניתוח שטח" },
+      { src: "./imgaes/residential/LVLUP/Muza1.png", title: "מצב מוצע" },
+      { src: "./imgaes/residential/LVLUP/Plans3.png", title: "תוכניות" },
       {
-        src: "./imgaes/public/MifgashRehov/MainObjectives.png",
-        title: "נקודות נבחרות",
+        src: "./imgaes/residential/LVLUP/Hazitot2.png",
+        title: "חתכי רחוב וחזיתות",
       },
       {
-        src: "./imgaes/public/MifgashRehov/MainObjectives2.png",
-        title: "נקודות נבחרות",
+        src: "./imgaes/residential/LVLUP/Apartments.png",
+        title: "קטלוג דירות1",
       },
       {
-        src: "./imgaes/public/MifgashRehov/MainObjectives3.png",
-        title: "נקודות נבחרות",
+        src: "./imgaes/residential/LVLUP/Apartments2.png",
+        title: "קטלוג דירות2",
       },
-      { src: "./imgaes/Slides/bluerails.png", title: "הדמייה" },
+      { src: "./imgaes/residential/LVLUP/cover.png", title: "הדמייה" },
+      { src: "./imgaes/residential/LVLUP/cover2.png", title: "הדמייה" },
+      { src: "./imgaes/residential/LVLUP/example1.png", title: "הדמייה" },
+      { src: "./imgaes/residential/LVLUP/example2.png", title: "הדמייה" },
+      { src: "./imgaes/residential/LVLUP/example3.png", title: "הדמייה" },
     ],
   },
 ];
