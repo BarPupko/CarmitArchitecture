@@ -1058,7 +1058,7 @@ footer hr {
   width: 100%;
   max-width: 100px;
   height: auto;
-  filter: grayscale(30%);
+  filter: grayscale(100%);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -1220,9 +1220,11 @@ footer hr {
   .gallery-item {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/2; /* Automatically creates a fixed frame ratio (like 300x200) */
+    aspect-ratio: 4/3; /* Bigger frame ratio for larger images */
+    min-height: 180px; /* Ensure a larger minimum height */
+    max-width: 180px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: #f0f0f0; /* nice background if images have transparent areas */
     cursor: pointer;
   }
@@ -1427,11 +1429,11 @@ footer hr {
     /* Close button always accessible */
     .close {
       font-size: 2.5rem;
-      top: 70px;
+      top: 40px;
       right: 15px;
       z-index: 10002;
       position: absolute;
-      color: rgb(255, 179, 0);
+      color: rgb(255, 0, 0);
     }
 
     /* Zoom overlay image size for mobile */
@@ -1444,6 +1446,7 @@ footer hr {
       top: 70px;
       right: 15px;
       font-size: 2.5rem;
+      background-color: red;
     }
   }
 
