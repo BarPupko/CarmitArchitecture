@@ -454,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // projection
     const projectSelector = document.getElementById("project-selector");
     // Clear existing options
-    projectSelector.innerHTML = '<option value="">בחר פרויקט</option>';
+    projectSelector.innerHTML = '<option value="">הפרויקטים שלי</option>';
 
     // Guard: Only loop to actual length
     for (let i = 0; i < images.length; i++) {
