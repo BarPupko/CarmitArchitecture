@@ -52,6 +52,7 @@ document.querySelectorAll(".scroll-reveal").forEach((el) => {
 
 window.addEventListener("scroll", function () {
   const navbar = document.querySelector(".navbar");
+
   if (window.scrollY > 50) {
     navbar.classList.add("scrolled");
   } else {
@@ -372,6 +373,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("lightbox-credits").textContent =
         img.credits || "";
 
+      // Gallery thumbnails
+      const gallery = document.getElementById("lightbox-gallery");
+      gallery.innerHTML = "";
       // Related images
       const galleryDiv = document.getElementById("lightbox-gallery");
       galleryDiv.innerHTML = "";
@@ -399,13 +403,6 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
           if (currentZoomIndex === -1) currentZoomIndex = 0;
-
-          setTimeout(() => {
-            document.getElementById("zoom-image").src =
-              currentZoomImages[currentZoomIndex].src;
-            zoomOverlay.classList.remove("hidden");
-            document.body.classList.add("no-scroll");
-          }, 200);
 
           currentZoomIndex = currentZoomImages.findIndex((related) =>
             related.src.includes(thumbSrc)
@@ -452,6 +449,31 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbWrapper.appendChild(title);
         galleryDiv.appendChild(thumbWrapper);
       });
+    });
+
+    // projection
+    const projectSelector = document.getElementById("project-selector");
+    // Clear existing options
+    projectSelector.innerHTML = '<option value="">בחר פרויקט</option>';
+
+    // Guard: Only loop to actual length
+    for (let i = 0; i < images.length; i++) {
+      const img = images[i];
+
+      const option = document.createElement("option");
+      option.value = i;
+      option.textContent = img.title;
+      projectSelector.appendChild(option);
+      console.log("index", i);
+    }
+
+    projectSelector.addEventListener("change", (e) => {
+      const selectedIndex = parseInt(e.target.value, 10);
+      // Simulate clicking the corresponding gallery item
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      if (galleryItems[selectedIndex]) {
+        galleryItems[selectedIndex].click();
+      }
     });
 
     // Optional: caption

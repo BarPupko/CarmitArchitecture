@@ -1,0 +1,20 @@
+
+    // projection
+    const projectSelector = document.getElementById("project-selector");
+    images.forEach((img, index) => {
+      const option = document.createElement("option");
+      option.value = index;
+      option.textContent = img.title;
+      projectSelector.appendChild(option);
+      console.log("index  ", index);
+      index = 0;
+    });
+
+    projectSelector.addEventListener("change", (e) => {
+      const selectedIndex = parseInt(e.target.value, 10);
+      // Simulate clicking the corresponding gallery item
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      if (galleryItems[selectedIndex]) {
+        galleryItems[selectedIndex].click();
+      }
+    });

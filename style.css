@@ -1079,6 +1079,46 @@ footer hr {
   transform: translateY(0);
 }
 
+/* Projection css */
+
+/* Change background, text, and border color when scrolled past 20px */
+#project-selector.scrolled {
+  background-color: rgb(255, 255, 255);
+  color: #222;
+  border: 1px solid #4e4e4e;
+}
+#project-selector {
+  direction: rtl;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  color: var(--text-color);
+  font-size: 1rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem; /* leave space for arrow */
+  font-family: inherit;
+  border-radius: 4px;
+  appearance: none; /* Remove native arrow */
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  min-width: 160px;
+  text-align: right;
+}
+
+/* Arrow indicator (using background image technique) */
+#project-selector {
+  background-repeat: no-repeat;
+  background-position: left 0.5rem center;
+  background-size: 10px 6px;
+}
+
+/* Option styling */
+#project-selector option {
+  background-color: rgba(121, 71, 18, 0.562);
+  color: white;
+  direction: rtl;
+  text-align: right;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .footer-container,
