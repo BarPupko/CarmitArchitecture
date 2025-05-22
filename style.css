@@ -1037,12 +1037,14 @@ body {
   align-items: center;
   gap: 1rem;
   font-size: 0.9rem;
-  color: #aaa;
+  color: #fff; /* Changed to white for better contrast */
+  background: transparent; /* Ensure no background hides text */
 }
-
 .footer-bottom p {
   margin: 0;
+  color: #fff; /* Ensure footer text is white */
 }
+
 
 .social-icons a {
   margin-left: 1rem;
