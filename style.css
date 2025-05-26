@@ -323,7 +323,7 @@ body {
 
 .lightbox-map-wrapper {
   position: fixed;
-  top: 20px;
+  top: 90px;
   left: 75px;
   height: 100%;
   width: 200px;
@@ -1044,7 +1044,6 @@ body {
   margin: 0;
   color: #fff; /* Ensure footer text is white */
 }
-
 
 .social-icons a {
   margin-left: 1rem;
