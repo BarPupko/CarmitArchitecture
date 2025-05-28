@@ -48,7 +48,7 @@ body {
 }
 
 .navbar.scrolled {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--bg-color);
   color: black;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -843,7 +843,6 @@ body {
 
 #hamburger {
   display: none;
-  background: red;
   border: none;
   font-size: 2rem;
   color: var(--text-color);
@@ -1185,14 +1184,16 @@ footer hr {
     justify-content: center;
     font-size: 2rem;
     color: #000;
-    background: yellow;
-    background-color: var(--bg-color);
+    background-color: transparent;
     border: none;
     cursor: pointer;
     width: 2.5rem;
     height: 2.5rem;
     line-height: 1;
     z-index: 9999;
+    position: absolute;
+    top: 0rem;
+    right: 2rem;
   }
 
   #hamburger i {
@@ -1474,9 +1475,11 @@ footer hr {
     }
 
     .lightbox-description,
-    .lightbox-description1 {
-      font-size: 0.95rem;
-      line-height: 1.4;
+    .lightbox-description1,
+    .lightbox-description2,
+    .lightbox-description3 {
+      font-size: 0.3rem;
+      line-height: 0.4;
     }
 
     .lightbox-extra {
@@ -1485,8 +1488,10 @@ footer hr {
       margin-inline: auto;
     }
 
-    .lightbox-credits {
-      font-size: 1rem;
+    .lightbox-credits .lightbox-credits2,
+    .lightbox-credits3,
+    .lightbox-credits4 {
+      font-size: 0.2rem;
       padding: 0.8rem;
     }
 
