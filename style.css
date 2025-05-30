@@ -391,6 +391,7 @@ body {
   color: white;
   padding: 1rem;
   border-radius: 6px;
+  font-size: 1rem;
   text-align: center;
   font-weight: bold;
   margin-top: 0;
@@ -1528,8 +1529,9 @@ footer hr {
     .lightbox-description1,
     .lightbox-description2,
     .lightbox-description3 {
-      font-size: 0.3rem;
-      line-height: 0.4;
+      font-size: 0.6rem;
+      line-height: 0.2;
+      padding: 0.1rem;
     }
 
     .lightbox-extra {
@@ -1538,11 +1540,19 @@ footer hr {
       margin-inline: auto;
     }
 
-    .lightbox-credits .lightbox-credits2,
+    .lightbox-credits,
+    .lightbox-credits1,
     .lightbox-credits3,
-    .lightbox-credits4 {
-      font-size: 0.2rem;
-      padding: 0.8rem;
+    .lightbox-credits2 {
+      flex: 1 1 0;
+      min-width: 0;
+      color: white;
+      padding: 1rem;
+      border-radius: 6px;
+      font-size: 0.5rem;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 0;
     }
 
     /* Gallery grid */
