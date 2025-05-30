@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carmit Architecture</title>
+    <meta name="description" content="Carmit Cohen Popko Portfolio" />
+    <meta name="keywords" content="Architecture, Portfolio, Carmit Cohen Popko" />
+    <link rel="icon" href="./assets/website_icon/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+    <script type="module" src="./script.js"></script>
+    <script src="cookie-consent.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJSP94B1B4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DJSP94B1B4');
+    </script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Awesome fonts -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0/css/all.css">
+    <!-- accessability -->
+    <script src="./nagishli_v3.0_beta_rev170120200211/nagishli_v3_beta/nagishli_beta.js?v=3.0" charset="utf-8"
+        defer></script>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js"></script>
+
+    <!-- Firebase Firestore SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js"></script>
+
+</head>
+
+
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-logo">
+                <img src="./assets/website_icon/icon.png" width="50px" height="50px" alt="Logo" />
+                <p href="#" class="logo_name"></p>
+
+                <!-- ❌ This is invalid (button inside button) -->
+                <!-- <button id="theme-toggle" aria-label="החלף מצב תאורה">
+                <button id="hamburger" aria-label="תפריט">&#9776;</button>
+              </button> -->
+
+                <!-- ✅ FIXED VERSION -->
+                <button id="theme-toggle" aria-label="החלף מצב תאורה">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <button id="hamburger" aria-label="תפריט">&#9776;</button>
+            </div>
+
+
+            <ul class="nav-links" id="nav-links">
+                <li>
+                    <select id="project-selector" aria-label="הפרוייקטים שלי">
+                        <option value="שדגדש">הפרוייקטים שלי</option>
+                    </select>
+                </li>
+                <li><a href="#portfolio">פורטפוליו</a></li>
+                <li><a href="#form">צור קשר</a></li>
+                <li><a href="#about">אודות</a></li>
+
+                <li>
+                    <a href="https://www.instagram.com/carmit_cohen/" target="_blank">
+                        <img src="./assets/icons/instagram.png" alt="Instagram" width="16" height="16" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://api.whatsapp.com/send/?phone=972546846527&text=שלום+כרמית">
+                        <img src="./assets/icons/whatsapp.png" alt="Whatsapp" width="16" height="16" />
+                    </a>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- Mini Cookie Consent Banner (No Customize) -->
+    <div id="cookie-banner" style="display: none;">
+        <strong>אנחנו מעריכים את פרטיותך</strong>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+            אנו משתמשים בקובצי עוגיות כדי לשפר את חוויית הגלישה, להציג תוכן מותאם אישית ולנתח תעבורה. בלחיצה על
+            "אישור
+            הכול",
+            אתה מסכים לשימוש זה.
+        </p>
+        <div class="button-group">
+            <button class="reject-btn" onclick="rejectCookies()">דחה הכול</button>
+            <button class="accept-btn" onclick="acceptCookies()">אישור הכול</button>
+        </div>
+    </div>
+
+
+    <!-- Contact Section -->
+
+    <div class="form-heading scroll-reveal" id="form" dir="rtl">
+        <h2>צור קשר</h2>
+        <p>מעוניין/ת לעבוד יחד? צור או צרי קשר באחת הדרכים הבאות.</p>
+    </div>
+    <section class="contact-section  scroll-reveal" id="contact" dir="rtl">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div class="info-block">
+                    <strong>דוא"ל</strong>
+                    <p>carmit1995@gmail.com</p>
+                    <p>carmit1995@walla.com</p>
+                </div>
+                <div class="info-block">
+                    <strong>טלפון</strong>
+                    <p> 54-684-6527 972+</p>
+                </div>
+                <!-- <div class="info-block">
+            <strong>כתובת</strong>
+            <p>רחוב גוש בשר מס' 12<br>חיפה, ישראל</p>
+          </div> -->
+                <div class="info-block social">
+                    <strong>רשתות חברתיות</strong>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/carmit_cohen/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://api.whatsapp.com/send/?phone=972526333958&text=היי+רציתי+לברר+לגבי+צילום"><i
+                                class="fab fa-whatsapp"></i></a>
+                        <li>
+                            <a href="https://www.facebook.com/carmit.cohen.95" target="_blank">
+                                <i class="fab fa-facebook-f"></i> פייסבוק
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+        <form id="contact-form" class="contact-form">
+          <input type="text" id="fullName" placeholder="שם מלא" required />
+          <input type="email" id="email" placeholder="אימייל" required />
+          <input type="text" id="subject" placeholder="נושא" />
+          <textarea id="message" rows="5" placeholder="ההודעה שלך..."></textarea>
+          <button type="submit">שלח הודעה</button>
+        </form> -->
+
+        </div>
+    </section>
+
+
+    </main>
+
+
+    <footer class="site-footer" dir="rtl">
+        <div class="footer-container">
+            <footer class="site-footer" dir="rtl">
+                <div class="footer-container">
+                    <div class="footer-column">
+                        <h4>כרמית כהן פופקו - אדריכלית</h4>
+                        <p>האתר מציג פרויקטים נבחרים ויצירות אדריכלות שלי, כולל עבודות מגוונות, מידע מקצועי ודרכי יצירת
+                            קשר.</p>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>ניווט</h4>
+                        <ul>
+                            <li><a href="#">בית</a></li>
+                            <li><a href="#portfolio">עבודות</a></li>
+                            <li><a href="#form">צור קשר</a></li>
+                            <li><a href="#about">אודות</a></li>
+                            <li><a href="accessibility.html">הצהרת נגישות</a></li>
+                        </ul>
+
+
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>צרו קשר</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.instagram.com/carmit_cohen/" target="_blank">
+                                    <i class="fab fa-instagram"></i> אינסטגרם
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://api.whatsapp.com/send/?phone=972546846527&text=שלום+כרמית"
+                                    target="_blank">
+                                    <i class="fab fa-whatsapp"></i> וואטסאפ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/carmit.cohen.95" target="_blank">
+                                    <i class="fab fa-facebook-f"></i> פייסבוק
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p> עיצוב ופיתוח ע"י בר פופקו , כל הזכויות שמורות לכרמית כהן 2025 ©</p>
+
+                </div>
+            </footer>
+
+
+            <hr />
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
