@@ -354,6 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
       storedViews++;
       localStorage.setItem(viewsKey, storedViews);
       viewCounter.textContent = `👁️ ${storedViews}`;
+
       lightbox.classList.remove("hidden");
       document.body.classList.add("no-scroll");
 
@@ -486,6 +487,102 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < images.length; i++) {
       const img = images[i];
 
+      // Reusable function to open the lightbox with history
+      function openLightboxWithHistory(img, index) {
+        // Update view counter
+        const viewsKey = `img_${index}`;
+        let storedViews = parseInt(localStorage.getItem(viewsKey)) || 0;
+        storedViews++;
+        localStorage.setItem(viewsKey, storedViews);
+
+        // Show lightbox
+        lightbox.classList.remove("hidden");
+        document.body.classList.add("no-scroll");
+        lightboxImg.src = img.src;
+
+        // Description
+        document.getElementById("lightbox-description").textContent =
+          img.description || "";
+        document.getElementById("lightbox-description1").textContent =
+          img.description1 || "";
+
+        // Map
+        const lat = img.exactLocation.x;
+        const lng = img.exactLocation.y;
+        const staticMapUrl = `https://maps.locationiq.com/v3/staticmap?key=pk.069fe51b456f904e1abfc7ab645dd9bd&center=${lat},${lng}&zoom=13&size=300x150&markers=icon:small-red-cutout|${lat},${lng}`;
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+        document.getElementById("lightbox-map").innerHTML = `
+          <a href="${googleMapsUrl}" target="_blank" style="display: inline-block; margin-bottom: 10px;">
+        <img src="${staticMapUrl}" alt="Location Map" style="width: 100%; border-radius: 8px;">
+          </a>
+        `;
+        document.getElementById("lightbox-title").textContent = img.title || "";
+        document.getElementById("lightbox-date").textContent = img.date || "";
+        document.getElementById("lightbox-description").textContent =
+          img.description || "";
+        document.getElementById("lightbox-description1").textContent =
+          img.description1 || "";
+        document.getElementById("lightbox-extra").textContent =
+          img.extraParagraph || "";
+        // Handle credits dynamically
+        ["credits", "credits1", "credits2", "credits3"].forEach((key) => {
+          const el = document.getElementById(`lightbox-${key}`);
+          if (img[key] && img[key].trim() !== "") {
+            el.textContent = img[key];
+            el.style.display = "block";
+          } else {
+            el.style.display = "none";
+            el.textContent = "";
+          }
+        });
+
+        // Gallery thumbnails
+        const galleryDiv = document.getElementById("lightbox-gallery");
+        galleryDiv.innerHTML = "";
+        (img.relatedImages || []).slice(0, 7).forEach((related, relIdx) => {
+          const thumbWrapper = document.createElement("div");
+          const thumb = document.createElement("img");
+          thumb.src = related.src;
+          thumb.alt = related.title;
+
+          thumb.addEventListener("click", () => {
+            currentZoomImages = img.relatedImages;
+            currentZoomIndex = relIdx;
+            document.getElementById("zoom-image").src =
+              currentZoomImages[currentZoomIndex].src;
+            zoomOverlay.classList.remove("hidden");
+            document.body.classList.add("no-scroll");
+            updateZoomImage();
+          });
+
+          const title = document.createElement("div");
+          title.className = "thumb-title";
+          title.textContent = related.title;
+
+          thumbWrapper.appendChild(thumb);
+          thumbWrapper.appendChild(title);
+          galleryDiv.appendChild(thumbWrapper);
+        });
+
+        // Update view counter in gallery
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        if (galleryItems[index]) {
+          const viewCounter = galleryItems[index].querySelector(".views");
+          if (viewCounter) {
+            viewCounter.textContent = `👁️ ${storedViews}`;
+          }
+        }
+
+        // Push state to history
+        if (window.history && window.history.pushState) {
+          window.history.pushState(
+            { lightbox: true, index },
+            "",
+            `#img${index}`
+          );
+        }
+      }
+
       const option = document.createElement("option");
       option.value = i;
       option.textContent = img.title;
@@ -555,53 +652,73 @@ document.getElementById("lightbox").addEventListener("click", (e) => {
   }
 });
 
-// Category filtering
 document.addEventListener("DOMContentLoaded", () => {
-  const categoryButtons = document.querySelectorAll(".category-button");
-  const galleryItems = document.querySelectorAll(".gallery-item");
-  console.log("clicked");
-  categoryButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const selectedCategory = button
-        .getAttribute("data-category")
-        .toLowerCase();
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.querySelector(".lightbox-img");
+  const closeBtn = document.querySelector(".close");
+  const images = [...document.querySelectorAll(".gallery-item")];
+  let currentZoomIndex = 0;
 
-      galleryItems.forEach((item, index) => {
-        const img = images[index];
+  function openLightbox(index) {
+    const img = images[index];
+    const src = img.querySelector("img").getAttribute("src");
+    lightboxImg.src = src;
+    lightbox.classList.remove("hidden");
+    document.body.classList.add("no-scroll");
 
-        if (!img) {
-          item.style.display = "none";
-          return;
-        }
+    if (location.hash !== `#lightbox=${index}`) {
+      history.pushState(
+        { lightboxOpen: true, index },
+        "",
+        `#lightbox=${index}`
+      );
+    }
 
-        let itemCategories = img.category;
+    currentZoomIndex = index;
+  }
 
-        // Ensure itemCategories is always an array
-        if (!Array.isArray(itemCategories)) {
-          itemCategories = [itemCategories];
-        }
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    document.body.classList.remove("no-scroll");
 
-        // Lowercase all categories for comparison
-        const lowerCaseCategories = itemCategories.map((cat) =>
-          cat.toLowerCase()
-        );
+    if (location.hash.startsWith("#lightbox=")) {
+      history.back();
+    }
+  }
 
-        if (
-          selectedCategory === "all" ||
-          lowerCaseCategories.includes(selectedCategory)
-        ) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
-      });
-
-      // Highlight the active button
-      categoryButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
+  // Gallery click
+  images.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      openLightbox(index);
     });
   });
+
+  // Close with X
+  closeBtn.addEventListener("click", closeLightbox);
+
+  // Close by background
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Back button
+  window.addEventListener("popstate", () => {
+    if (location.hash.startsWith("#lightbox=")) {
+      const index = parseInt(location.hash.split("=")[1]);
+      if (!isNaN(index)) openLightbox(index);
+    } else {
+      lightbox.classList.add("hidden");
+      document.body.classList.remove("no-scroll");
+    }
+  });
+
+  // On load with hash
+  if (location.hash.startsWith("#lightbox=")) {
+    const index = parseInt(location.hash.split("=")[1]);
+    if (!isNaN(index)) openLightbox(index);
+  }
 });
+
 //hamburger menu
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
