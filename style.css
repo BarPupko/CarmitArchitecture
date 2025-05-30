@@ -844,7 +844,7 @@ body {
 #cookie-banner {
   position: fixed;
   bottom: 40px;
-  right: 100px;
+  right: 50px;
   background: white;
   color: #222;
   padding: 1rem 1.5rem;
