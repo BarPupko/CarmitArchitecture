@@ -388,14 +388,17 @@ document.addEventListener("DOMContentLoaded", () => {
         img.description1 || "";
       document.getElementById("lightbox-extra").textContent =
         img.extraParagraph || "";
-      document.getElementById("lightbox-credits").textContent =
-        img.credits || "";
-      document.getElementById("lightbox-credits1").textContent =
-        img.credits1 || "";
-      document.getElementById("lightbox-credits2").textContent =
-        img.credits2 || "";
-      document.getElementById("lightbox-credits3").textContent =
-        img.credits3 || "";
+      // Handle credits dynamically
+      ["credits", "credits1", "credits2", "credits3"].forEach((key, index) => {
+        const el = document.getElementById(`lightbox-${key}`);
+        if (img[key] && img[key].trim() !== "") {
+          el.textContent = img[key];
+          el.style.display = "block"; // Show element
+        } else {
+          el.style.display = "none"; // Hide element
+          el.textContent = ""; // Just in case
+        }
+      });
 
       // Gallery thumbnails
       const gallery = document.getElementById("lightbox-gallery");
