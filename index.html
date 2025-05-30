@@ -16,7 +16,16 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
   <script type="module" src="./script.js"></script>
+  <script type="module" src="./firebase.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJSP94B1B4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
+    gtag('config', 'G-DJSP94B1B4');
+  </script>
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Awesome fonts -->
@@ -101,6 +110,13 @@
 
         <button class="nav-button nav-next">&#10095;</button>
       </div>
+    </div>
+    <div id="cookie-banner"
+      style="position: fixed; bottom: 0; background: #000; color: #fff; width: 100%; padding: 10px; text-align: center;">
+      This website uses cookies to ensure you get the best experience. <a href="privacy.html" style="color: #0ff;">Learn
+        more</a>
+      <button onclick="document.getElementById('cookie-banner').style.display='none'"
+        style="margin-left: 10px;">OK</button>
     </div>
 
 
