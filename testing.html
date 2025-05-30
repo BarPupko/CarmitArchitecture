@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle Scroll with Images</title>
+    <style>
+        body {
+            margin: 0;
+            background: #eee;
+            font-family: sans-serif;
+        }
+
+        .spacer {
+            height: 150vh;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-wrapper {
+            position: absolute;
+            width: 100px;
+            transition: transform 0.2s ease-out;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="spacer"></div>
+
+    <div class="container" id="triangle-container">
+        <!-- 6 stacked images -->
+        <div class="image-wrapper" data-index="0" style="top: 60%"><img src="https://via.placeholder.com/100x60" />
+        </div>
+        <div class="image-wrapper" data-index="1" style="top: 50%"><img src="https://via.placeholder.com/100x60" />
+        </div>
+        <div class="image-wrapper" data-index="2" style="top: 40%"><img src="https://via.placeholder.com/100x60" />
+        </div>
+        <div class="image-wrapper" data-index="3" style="top: 30%"><img src="https://via.placeholder.com/100x60" />
+        </div>
+        <div class="image-wrapper" data-index="4" style="top: 20%"><img src="https://via.placeholder.com/100x60" />
+        </div>
+        <div class="image-wrapper" data-index="5" style="top: 10%"><img src="https://via.placeholder.com/100x60" />
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <script>
+        const images = document.querySelectorAll('.image-wrapper');
+        const container = document.getElementById('triangle-container');
+
+        window.addEventListener('scroll', () => {
+            const rect = container.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            // Calculate scroll progress (0 to 1)
+            let progress = (windowHeight - rect.top) / windowHeight;
+            progress = Math.max(0, Math.min(1, progress));
+
+            images.forEach((img, i) => {
+                const total = images.length;
+                const factor = (total - i) / total; // higher images move more
+                const offsetX = (50 - 10 * i) * (1 - progress); // spread narrows
+                const translateX = offsetX * (1 - factor);
+                const scale = 1 - progress * 0.4;
+
+                img.style.transform = `translateX(${translateX}px) scale(${scale})`;
+            });
+        });
+    </script>
+
+</body>
+
+</html>

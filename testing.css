@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f0f0f0;
+  overflow-x: hidden;
+}
+
+.spacer {
+  height: 100vh;
+}
+
+.building {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.building-svg {
+  width: 200px;
+  height: 400px;
+}
+.line {
+  stroke: #000;
+  stroke-width: 2;
+  transition: all 0.3s ease-out;
+}
