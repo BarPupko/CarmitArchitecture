@@ -16,7 +16,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
   <script type="module" src="./script.js"></script>
-  <script type="module" src="./firebase.js"></script>
+  <script src="cookie-consent.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DJSP94B1B4"></script>
   <script>
@@ -111,14 +111,22 @@
         <button class="nav-button nav-next">&#10095;</button>
       </div>
     </div>
-    <div id="cookie-banner"
-      style="position: fixed; bottom: 0; background: #000; color: #fff; width: 100%; padding: 10px; text-align: center;">
-      This website uses cookies to ensure you get the best experience. <a href="privacy.html" style="color: #0ff;">Learn
-        more</a>
-      <button onclick="document.getElementById('cookie-banner').style.display='none'"
-        style="margin-left: 10px;">OK</button>
+
+    <!-- Mini Cookie Consent Banner (No Customize) -->
+    <div id="cookie-banner" style="display: none;">
+      <strong>אנחנו מעריכים את פרטיותך</strong>
+      <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+        אנו משתמשים בקובצי עוגיות כדי לשפר את חוויית הגלישה, להציג תוכן מותאם אישית ולנתח תעבורה. בלחיצה על "אישור
+        הכול",
+        אתה מסכים לשימוש זה.
+      </p>
+      <div class="button-group">
+        <button class="reject-btn" onclick="rejectCookies()">דחה הכול</button>
+        <button class="accept-btn" onclick="acceptCookies()">אישור הכול</button>
+      </div>
     </div>
 
+    </div>
 
     <!-- Category buttons for filtering the gallery below -->
     <div class="category-bubbles-section">

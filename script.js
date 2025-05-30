@@ -1,4 +1,4 @@
-// firebase
+// Cookie Banner
 
 // navbar change on scroll
 // close button

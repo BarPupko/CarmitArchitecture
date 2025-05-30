@@ -840,7 +840,57 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+/* Base styles for cookie banner */
+#cookie-banner {
+  position: fixed;
+  bottom: 40px;
+  right: 100px;
+  background: white;
+  color: #222;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  max-width: 360px;
+  direction: rtl;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+/* Button styles */
+#cookie-banner .button-group {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
 
+#cookie-banner button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+#cookie-banner .accept-btn {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+}
+
+#cookie-banner .reject-btn {
+  background: none;
+  border: 1px solid #3f51b5;
+  color: #3f51b5;
+}
+
+/* Put button group on the right */
+#cookie-banner .button-group {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
 #hamburger {
   display: none;
   border: none;
@@ -1706,5 +1756,23 @@ footer hr {
     .zoom-nav:hover {
       opacity: 0.8;
     }
+  }
+}
+@media screen and (max-width: 600px) {
+  #cookie-banner {
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    max-width: unset;
+    padding: 1rem;
+  }
+
+  #cookie-banner .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #cookie-banner button {
+    width: 100%;
   }
 }
