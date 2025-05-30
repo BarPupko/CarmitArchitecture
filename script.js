@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const el = document.getElementById(`lightbox-${key}`);
         if (img[key] && img[key].trim() !== "") {
           el.textContent = img[key];
-          el.style.display = "block"; // Show element
+          el.style.display = "inline"; // Show element
         } else {
           el.style.display = "none"; // Hide element
           el.textContent = ""; // Just in case
