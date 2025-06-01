@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="admin.js"></script>
+
+    <title>Project Admin Panel</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input,
+        textarea,
+        button,
+        select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        #output {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>✏️ Project Editor</h2>
+
+    <!-- Your form elements -->
+    <select id="projectSelector"></select>
+    <input type="text" id="title" placeholder="Title" />
+    <textarea id="description" placeholder="Description"></textarea>
+    <input type="text" id="image" placeholder="Image URL" />
+    <button id="saveBtn">Save</button>
+    <pre id="output"></pre>
+
+    <!-- ✅ Load Firebase scripts FIRST -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <!-- ✅ Load your admin logic AFTER -->
+    <script src="admin.js"></script>
+</body>
+
+</html>
