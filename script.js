@@ -346,8 +346,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const viewsKey = `img_${index}`;
     let storedViews = parseInt(localStorage.getItem(viewsKey)) || 0;
     const viewCounter = document.createElement("div");
-    viewCounter.className = "views";
-    viewCounter.textContent = `👁️ ${storedViews}`;
+    // viewCounter.className = "views";
+    // viewCounter.textContent = `👁️ ${storedViews}`;
 
     // Image click logic
     item.addEventListener("click", () => {
@@ -604,8 +604,19 @@ document.addEventListener("DOMContentLoaded", () => {
     caption.className = "caption";
     caption.textContent = img.title;
 
-    item.appendChild(image);
-    item.appendChild(caption);
+    // Container for image and caption
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "image-wrapper";
+
+    imageWrapper.appendChild(image);
+
+    // Add hover caption
+    const hoverCaption = document.createElement("div");
+    hoverCaption.className = "hover-caption";
+    hoverCaption.textContent = img.title;
+
+    imageWrapper.appendChild(hoverCaption);
+    item.appendChild(imageWrapper);
     item.appendChild(viewCounter);
     gallery.appendChild(item);
 
