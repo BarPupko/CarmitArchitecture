@@ -15,23 +15,35 @@ const db = firebase.firestore();
 const selector = document.getElementById("projectSelector");
 const titleInput = document.getElementById("title");
 const descInput = document.getElementById("description");
-const imgInput = document.getElementById("image");
-const output = document.getElementById("output");
+const imgInput = document.getElementById("src");
+const dateInput = document.getElementById("date");
+const locationInput = document.getElementById("location");
+const latInput = document.getElementById("x");
+const lngInput = document.getElementById("y");
+const categoryInput = document.getElementById("category");
+const objectPositionInput = document.getElementById("objectPosition");
+const description1Input = document.getElementById("description1");
+const extraParagraphInput = document.getElementById("extraParagraph");
+const creditsInputs = [
+  document.getElementById("credits"),
+  document.getElementById("credits1"),
+  document.getElementById("credits2"),
+  document.getElementById("credits3"),
+];
+const relatedImagesContainer = document.getElementById("relatedImages");
 
 let projectList = [];
 let currentId = null;
 
 async function loadProjects() {
   const snapshot = await db.collection("projects").get();
-
   projectList = [];
-  selector.innerHTML = "";
+  selector.innerHTML = '<option value="">-- New Project --</option>';
 
   snapshot.forEach((doc) => {
     const data = doc.data();
     data.id = doc.id;
     projectList.push(data);
-
     const option = document.createElement("option");
     option.value = data.id;
     option.textContent = data.title || data.id;
@@ -42,8 +54,22 @@ async function loadProjects() {
     currentId = projectList[0].id;
     selector.value = currentId;
     loadProject(currentId);
-  } else {
-    console.warn("No documents found in Firestore.");
+  }
+}
+
+function clearRelatedImagesUI() {
+  relatedImagesContainer.innerHTML = "";
+  for (let i = 0; i < 5; i++) {
+    const srcInput = document.createElement("input");
+    srcInput.className = "related-src";
+    srcInput.placeholder = `Related Image ${i + 1} URL`;
+
+    const titleInput = document.createElement("input");
+    titleInput.className = "related-title";
+    titleInput.placeholder = `Related Image ${i + 1} Title`;
+
+    relatedImagesContainer.appendChild(srcInput);
+    relatedImagesContainer.appendChild(titleInput);
   }
 }
 
@@ -55,25 +81,80 @@ function loadProject(id) {
   titleInput.value = project.title || "";
   descInput.value = project.description || "";
   imgInput.value = project.src || "";
-  output.textContent = JSON.stringify(project, null, 2);
+  dateInput.value = project.date || "";
+  locationInput.value = project.location || "";
+  latInput.value = project.exactLocation?.x || "";
+  lngInput.value = project.exactLocation?.y || "";
+  categoryInput.value = project.category || "";
+  objectPositionInput.value = project.objectPosition || "";
+  description1Input.value = project.description1 || "";
+  extraParagraphInput.value = project.extraParagraph || "";
+  creditsInputs.forEach((el, i) => {
+    el.value = project[`credits${i ? i : ""}`] || "";
+  });
+
+  clearRelatedImagesUI();
+
+  const srcInputs = relatedImagesContainer.querySelectorAll(".related-src");
+  const titleInputs = relatedImagesContainer.querySelectorAll(".related-title");
+
+  srcInputs.forEach((input, i) => {
+    input.value = project.relatedImages?.[i]?.src || "";
+  });
+  titleInputs.forEach((input, i) => {
+    input.value = project.relatedImages?.[i]?.title || "";
+  });
 }
 
-selector.addEventListener("change", (e) => {
-  loadProject(e.target.value);
-});
+function submitProject() {
+  const credits = {};
+  creditsInputs.forEach((el, i) => {
+    credits[`credits${i ? i : ""}`] = el.value;
+  });
 
-document.getElementById("saveBtn").addEventListener("click", async () => {
-  if (!currentId) return;
+  const relatedSrcs = relatedImagesContainer.querySelectorAll(".related-src");
+  const relatedTitles =
+    relatedImagesContainer.querySelectorAll(".related-title");
+  const relatedImages = Array.from(relatedSrcs)
+    .map((srcInput, i) => {
+      return {
+        src: srcInput.value,
+        title: relatedTitles[i].value,
+      };
+    })
+    .filter((img) => img.src);
 
-  const updated = {
+  const project = {
     title: titleInput.value,
     description: descInput.value,
     src: imgInput.value,
+    date: dateInput.value,
+    location: locationInput.value,
+    exactLocation: {
+      x: parseFloat(latInput.value),
+      y: parseFloat(lngInput.value),
+    },
+    category: categoryInput.value,
+    objectPosition: objectPositionInput.value,
+    description1: description1Input.value,
+    extraParagraph: extraParagraphInput.value,
+    relatedImages,
+    ...credits,
   };
 
-  await db.collection("projects").doc(currentId).set(updated);
-  output.textContent = "✅ Saved!";
-  await loadProjects();
+  const docRef = currentId
+    ? db.collection("projects").doc(currentId)
+    : db.collection("projects").doc();
+  docRef.set(project).then(() => {
+    alert("✅ Project saved successfully");
+    loadProjects();
+  });
+}
+
+selector.addEventListener("change", (e) => {
+  const id = e.target.value;
+  if (id) loadProject(id);
 });
 
+clearRelatedImagesUI();
 loadProjects();

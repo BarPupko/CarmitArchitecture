@@ -41,14 +41,30 @@
 <body>
 
     <h2>✏️ Project Editor</h2>
-
-    <!-- Your form elements -->
     <select id="projectSelector"></select>
+
     <input type="text" id="title" placeholder="Title" />
     <textarea id="description" placeholder="Description"></textarea>
-    <input type="text" id="image" placeholder="Image URL" />
-    <button id="saveBtn">Save</button>
-    <pre id="output"></pre>
+    <input type="text" id="src" placeholder="Image URL" />
+    <input type="text" id="date" placeholder="Date" />
+    <input type="text" id="location" placeholder="Location" />
+    <input type="text" id="x" placeholder="Latitude (x)" />
+    <input type="text" id="y" placeholder="Longitude (y)" />
+    <input type="text" id="category" placeholder="Category" />
+    <input type="text" id="objectPosition" placeholder="Object Position" />
+    <textarea id="description1" placeholder="Description 1"></textarea>
+    <textarea id="extraParagraph" placeholder="Extra Paragraph"></textarea>
+
+    <input type="text" id="credits" placeholder="Credit 1" />
+    <input type="text" id="credits1" placeholder="Credit 2" />
+    <input type="text" id="credits2" placeholder="Credit 3" />
+    <input type="text" id="credits3" placeholder="Credit 4" />
+
+    <div id="relatedImages"></div>
+
+    <button onclick="submitProject()">Save Project</button>
+
+
 
     <!-- ✅ Load Firebase scripts FIRST -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
